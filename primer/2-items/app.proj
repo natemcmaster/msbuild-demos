@@ -1,0 +1,54 @@
+<Project>
+    <PropertyGroup>
+        <!--<MyFiles>*.js</MyFiles>-->
+        <SassFiles>sass\_variables.scss;sass\site.scss</SassFiles>
+    </PropertyGroup>
+
+    <!-- Global items -->
+    <ItemGroup>
+        <MyFiles Include="*.cs" />
+    </ItemGroup>
+
+    <Target Name="Build">
+        <!-- Items set during target execution -->
+        <ItemGroup>
+            <!--<MyFiles Include="*.js" />-->
+        </ItemGroup>
+
+        <Message Text="Say '$(MyFiles)'" Importance="High" />
+        <Message Text="Say '@(MyFiles)'" Importance="High" />
+        <Message Text="Say '%(MyFiles.Identity)'" Importance="High" />
+
+        <Message Text="Say '%(SassFiles.Identity)'" Importance="High" />
+    </Target>
+
+</Project>
+
+<!--
+Notes:
+
+1. Show different var expansion syntax
+2. Show globbing, include, exclude, metadata
+3. Quirks
+
+    Order of execution:
+        1. global static props
+        2. global static items
+        3. run targets
+
+
+
+                <MyFiles Include="$(DefaultCssFiles)" />
+
+            <PropertyGroup>
+                <DefaultCssFiles>**\*.css</DefaultCssFiles>
+            </PropertyGroup>
+
+    Talk about file separators, \ vs /
+
+4. Property <-> itemgroup conversion
+
+
+    <SassFiles>sass\_variables.scss;sass\site.scss</SassFiles>
+    <Message Text="Say '%(SassFiles.Identity)'" Importance="High" />
+-->

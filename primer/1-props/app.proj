@@ -1,0 +1,33 @@
+<Project>
+    <!-- Global properties -->
+    <PropertyGroup>
+        <!--<Format>vader</Format>-->
+        <!--<Format>dragon</Format>-->
+        <!--<Format>ghostbusters</Format>-->
+    </PropertyGroup>
+
+    <Target Name="Build">
+        <!-- Properties set during target execution -->
+        <PropertyGroup>
+            <!--<Format>elephant</Format>-->
+
+            <CowArgs Condition="'$(Format)'!=''">-f $(Format)</CowArgs>
+        </PropertyGroup>
+
+        <!--<Exec Command="fortune | cowsay $(CowArgs)" />-->
+        <Exec Command="echo &quot;$(Message)&quot; | cowsay $(CowArgs)">
+
+    </Target>
+
+</Project>
+
+
+<!--
+Notes:
+1. dotnet build
+2. dotnet msbuild
+3. Show global static properties
+4. Show properties set during execution
+5. Show environment variables
+
+-->

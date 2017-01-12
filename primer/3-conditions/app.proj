@@ -1,0 +1,22 @@
+<Project>
+    <PropertyGroup>
+        <Age Condition="$(Age)==''">14</Age>
+
+        <!--<AgeGroup Condition='$(Age) &lt;= 0'>imaginary</AgeGroup>-->
+        <AgeGroup Condition='$(Age) &lt;= 12'>a kid</AgeGroup>
+        <AgeGroup Condition='$(Age) &gt; 12 AND $(Age) &lt;= 19'>a teenager</AgeGroup>
+        <AgeGroup Condition='$(Age) &gt; 19 AND $(Age) &lt; 70'>an adult</AgeGroup>
+        <AgeGroup Condition='$(Age) == 21'>twenty-one</AgeGroup>
+        <AgeGroup Condition='$(Age) &gt; 70'>old</AgeGroup>
+    </PropertyGroup>
+
+    <Target Name='Build'
+            Condition="'$(Age)'!=''">
+        <PropertyGroup>
+            <CowSays>You are $(AgeGroup)</CowSays>
+        </PropertyGroup>
+
+        <Exec Command="echo &quot;$(CowSays)&quot; | cowsay "
+              Condition="'$(Age)' != '' AND $(Age) &gt; 0" />
+    </Target>
+</Project>
