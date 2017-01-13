@@ -6,11 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.0.3" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
+  <Target Name="SayHi">
+    <Message Text="Hi" Importance="High" />
+  </Target>
+
   <Target Name="CustomBuildAction" AfterTargets="Build">
+
+    <CallTarget Targets="SayHi" />
+
     <Message Text="Doing that custom build thing..." Importance="High" />
+
   </Target>
 
 </Project>
@@ -21,5 +30,18 @@
 Notes:
 
 Show the difference between 'AfterTargets=Compile' and AfterTargets='Build'
+
+
+Show multiple CallTarget invocations
+
+Show MSBuild task and multiple invocations
+
+<MSBuild Projects="$(MSBuildProjectFile)"
+         Targets="SayHi" />
+
+
+<MSBuild Projects="$(MSBuildProjectFile)"
+            Targets="SayHi"
+            Properties="File=%(PackageReference.Identity)" />
 
 -->

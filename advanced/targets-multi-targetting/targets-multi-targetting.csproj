@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <!--<TargetFrameworks>netstandard1.4;netstandard1.0</TargetFrameworks>-->
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="1.6.0" />
+  </ItemGroup>
+
+  <Target Name="CreateFile" AfterTargets="Build">
+
+    <Message Importance="high" Text="Writing file to $(TargetDir)timestamp.txt" />
+
+    <WriteLinesToFile Lines="The current build time is $([System.DateTime]::UtcNow.ToString())"
+        File="$(TargetDir)timestamp.txt"
+        />
+
+  </Target>
+
+</Project>

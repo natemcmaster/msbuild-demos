@@ -1,0 +1,22 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFrameworks>a;b;c</TargetFrameworks>
+    </PropertyGroup>
+
+    <Target Name="Build">
+
+        <ItemGroup>
+            <_TargetFrameworks Include="$(TargetFrameworks)" />
+        </ItemGroup>
+
+        <MSBuild Targets="Build"
+                 Projects="$(MSBuildThisFile)"
+                 Properties="TargetFramework=%(_TargetFrameworks.Identity)"
+                 Condition="'$(TargetFramework)'==''" />
+
+        <Message Importance="High" Text="Building tfm: $(TargetFramework)" />
+
+    </Target>
+
+</Project>
